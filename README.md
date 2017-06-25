@@ -5,9 +5,10 @@
 2. git checkout {easy/medium/hard}
 
 
-#### Easy:
+### Choose a track:
 
-* Implement a neural network model
+#### Easy:
+* neural network model
 
 #### Medium:
 * neural network model
@@ -19,9 +20,9 @@
 * model sampling
 
 
-#### View solution:
+### View solution:
 * git checkout sol
 * https://www.youtube.com/watch?v=amDSuZv2tCw&feature=youtu.be
 
-#### Acknowledgement:
+### Acknowledgement:
 Code is based on Open AI gym and Tensorflow
