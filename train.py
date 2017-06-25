@@ -2,7 +2,6 @@ import tensorflow as tf
 from model import build_model, define_loss
 import gym
 import numpy as np
-from random import shuffle
 
 tf.flags.DEFINE_string('env_id', "LunarLander-v2", "game name")
 tf.flags.DEFINE_integer("num_actions", 4, "number of possible actions")
@@ -57,16 +56,16 @@ def main():
             episode_len = 0
             for t in range(FLAGS.num_timesteps):
                 # env.render()
-                obs.append(observation)
 
-                predicted_actions = sess.run(actions_op, feed_dict={observations_ph: np.expand_dims(observation, 0)})
-                action = np.random.choice(np.arange(0, FLAGS.num_actions), p=np.squeeze(predicted_actions))
-                actions.append(action)
-
+                '''
+                to sample from the environment, use:
                 observation, reward, done, info = env.step(action)
-                rewards.append(reward)
+                '''
+                # YOUR CODE STARTS HERE
 
-                if done or t == FLAGS.num_timesteps - 1:
+                # YOUR CODE ENDS HERE
+
+                if t == FLAGS.num_timesteps - 1:
                     episode_len = t + 1
                     break
 
