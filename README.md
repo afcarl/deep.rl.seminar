@@ -1,4 +1,4 @@
-## Deep RL hand on seminar
+## Deep RL hands on seminar
 
 ### Getting started:
 1. git clone https://github.com/amirbar/deep.rl.seminar.git
