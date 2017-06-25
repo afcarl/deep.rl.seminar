@@ -28,6 +28,21 @@ def compute_discounted_aggregated_rewards(rewards):
     return np.array(aggregated_rewards)
 
 
+def sample_batch(obs, actions, rewards):
+    obs = np.array(obs)
+    actions = np.array(actions)
+    rewards = np.array(rewards)
+
+    if obs.shape[0] > FLAGS.batch_size:
+        perm = [i for i in range(obs.shape[0])]
+        shuffle(perm)
+        perm = perm[:FLAGS.batch_size]
+        obs = obs[perm]
+        actions = actions[perm]
+        rewards = rewards[perm]
+    return obs, actions, rewards
+
+
 def main():
     observations_ph = tf.placeholder(dtype=tf.float32, shape=(None, FLAGS.input_size), name="obs")
     rewards_ph = tf.placeholder(dtype=tf.float32, shape=(None), name="rewards")

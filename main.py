@@ -8,9 +8,10 @@ tf.flags.DEFINE_integer("num_actions", 4, "number of possible actions")
 tf.flags.DEFINE_integer("input_size", 8, "number of possible actions")
 tf.flags.DEFINE_integer("num_timesteps", 5000, "number of possible actions")
 tf.flags.DEFINE_integer("num_episodes", 30000, "number of episodes")
-tf.flags.DEFINE_string("checkpoint", '', "path to checkpoint")
 
 FLAGS = tf.flags.FLAGS
+
+
 
 observations_ph = tf.placeholder(dtype=tf.float32, shape=(None, FLAGS.input_size), name="obs")
 rewards_ph = tf.placeholder(dtype=tf.float32, shape=(None), name="rewards")
@@ -20,11 +21,28 @@ actions_op = build_model(observations_ph)
 loss, train_op = define_loss(actions_op, actions_ph, rewards_ph)
 env = gym.make(FLAGS.env_id)
 
+summary_writer = tf.summary.FileWriter('./logs/')
+summaries = tf.summary.merge_all()
+
+
+def compute_discounted_aggregated_rewards(rewards):
+    gamma = 0.99
+    aggregated_rewards = []
+    for i in range(len(rewards)):
+        curr_step_rewards = rewards[i:]
+        aggregated_reward = []
+        for j in range(len(curr_step_rewards)):
+            aggregated_reward.append(curr_step_rewards[j]*(pow(gamma, j)))
+        aggregated_rewards.append(np.sum(aggregated_reward))
+    aggregated_rewards = np.array(aggregated_rewards)
+    aggregated_rewards = (aggregated_rewards - np.mean(aggregated_rewards))/np.std(aggregated_rewards)
+    return aggregated_rewards
+
 saver = tf.train.Saver()
 with tf.Session() as sess:
 
     sess.run(tf.initialize_all_variables())
-    saver.restore(sess, FLAGS.checkpoint)
+    saver.restore(sess, '/Users/amirbar/Repositories/adv.ml.hw4/logs/ckp_218.433660562-13469')
     for i_episode in range(FLAGS.num_episodes):
         observation = env.reset()
         actions = []
@@ -45,4 +63,5 @@ with tf.Session() as sess:
 
             if done or t == FLAGS.num_timesteps-1:
                 episode_len = t+1
+                # print("Episode finished after {} timesteps".format(t + 1))
                 break
