@@ -2,16 +2,19 @@
 
 ### Getting started:
 #### Prequisities
+```
 pip install tensorflow
 pip install gym
 git clone https://github.com/pybox2d/pybox2d
 cd pybox2d
 python setup.py build
 python setup.py install
-
+```
 #### Install excercise
-1. git clone https://github.com/amirbar/deep.rl.seminar.git
-2. git checkout {easy/medium/hard}
+```
+git clone https://github.com/amirbar/deep.rl.seminar.git
+git checkout {easy/medium/hard}
+```
 
 
 ### Choose a track:
@@ -30,8 +33,10 @@ python setup.py install
 
 
 ### View solution:
-* git checkout sol
-* https://www.youtube.com/watch?v=amDSuZv2tCw&feature=youtu.be
+```
+git checkout sol
+https://www.youtube.com/watch?v=amDSuZv2tCw&feature=youtu.be
+```
 
 ### Acknowledgement:
 Code is based on Open AI gym and Tensorflow
