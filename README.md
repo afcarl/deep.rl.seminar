@@ -5,6 +5,7 @@
 ```
 pip install tensorflow
 pip install gym
+sudo apt-get install swig
 git clone https://github.com/pybox2d/pybox2d
 cd pybox2d
 python setup.py build
@@ -39,4 +40,5 @@ https://www.youtube.com/watch?v=amDSuZv2tCw&feature=youtu.be
 ```
 
 ### Acknowledgement:
-Code is based on Open AI gym and Tensorflow
+* Code is based on Open AI gym and Tensorflow
+* Excercise idea is taken from - TAU Advanced ML class. http://adv-ml-2017.wikidot.com/
