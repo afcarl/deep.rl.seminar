@@ -1,6 +1,15 @@
 ## Deep RL hands on seminar
 
 ### Getting started:
+#### Prequisities
+pip install tensorflow
+pip install gym
+git clone https://github.com/pybox2d/pybox2d
+cd pybox2d
+python setup.py build
+python setup.py install
+
+#### Install excercise
 1. git clone https://github.com/amirbar/deep.rl.seminar.git
 2. git checkout {easy/medium/hard}
 
